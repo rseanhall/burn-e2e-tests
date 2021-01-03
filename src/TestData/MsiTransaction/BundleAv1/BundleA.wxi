@@ -15,6 +15,7 @@
     </BootstrapperApplication>
 
     <Chain>
+      <PackageGroupRef Id="TestBA" />
       <PackageGroupRef Id="BundlePackages" />
     </Chain>
   </Bundle>
