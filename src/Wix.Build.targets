@@ -10,4 +10,8 @@
     <DefineConstants Condition=" '$(UpgradeCode)' != '' ">UpgradeCode=$(UpgradeCode);$(DefineConstants)</DefineConstants>
     <DefineConstants Condition=" '$(Version)' != '' ">Version=$(Version);$(DefineConstants)</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(OutputType)'=='Bundle' and '$(InstallerPlatform)'==''">
+    <InstallerPlatform>x64</InstallerPlatform>
+    <SuppressSpecificWarnings>1154;$(SuppressSpecificWarnings)</SuppressSpecificWarnings>
+  </PropertyGroup>
 </Project>
