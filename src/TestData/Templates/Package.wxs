@@ -21,6 +21,9 @@
     <Feature Id="Complete" Level="1">
       <ComponentRef Id="FileComponent" />
       <ComponentRef Id="RegistryComponent" />
+      <?ifdef var.ProductComponents?>
+      <ComponentGroupRef Id="ProductComponents" />
+      <?endif?>
     </Feature>
   </Package>
 
