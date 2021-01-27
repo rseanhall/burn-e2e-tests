@@ -10,7 +10,7 @@
   </Fragment>
 
   <Fragment>
-    <Component Id="RegistryComponent2" Directory="INSTALLFOLDER">
+    <Component Id="RegistryComponent2" Directory="INSTALLFOLDER" Guid="{D14019DA-E688-408F-99C3-C9FB86F361A1}">
       <RegistryValue Root="HKLM" Key="Software\WiX\Tests\$(var.TestGroupName)" Name="$(var.PackageName)2" Value="!(bind.Property.TestVersion)" Type="string" />
     </Component>
   </Fragment>

@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>PatchCreation</OutputType>
     <TargetExt>.msp</TargetExt>
+    <SuppressSpecificWarnings>1079</SuppressSpecificWarnings>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\PackageAv1\PackageAv1.wixproj" />

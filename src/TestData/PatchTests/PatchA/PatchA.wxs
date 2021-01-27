@@ -6,7 +6,7 @@
 
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:swid="http://wixtoolset.org/schemas/v4/wxs/tag">
     <Patch AllowRemoval="yes" Classification="Update" Description="Patch A in test $(var.TestGroupName)" DisplayName="$(var.TestGroupName) - Patch A" Manufacturer="Example Corporation" MinorUpdateTargetRTM="yes">
-        <Media Id="100" Cabinet="A" EmbedCab="yes">
+        <Media Id="100" Cabinet="PatchA" EmbedCab="yes">
             <PatchBaseline
               Id="PatchA"
               BaselineFile="$(var.PackageAv1.TargetDir)$(var.PackageAv1.TargetName).wixpdb"
