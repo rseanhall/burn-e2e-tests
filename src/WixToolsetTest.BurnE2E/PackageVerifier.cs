@@ -36,7 +36,13 @@ namespace WixToolsetTest.BurnE2E
         {
             var wiData = this.GetWindowsInstallerData();
             var row = wiData.Tables["Directory"].Rows.Single(r => r.FieldAsString(0) == "INSTALLFOLDER");
-            return row.FieldAsString(2);
+            var value = row.FieldAsString(2);
+            var longNameIndex = value.IndexOf('|') + 1;
+            if (longNameIndex > 0)
+            {
+                return value.Substring(longNameIndex);
+            }
+            return value;
         }
 
         public string GetProperty(string name)
@@ -62,6 +68,7 @@ namespace WixToolsetTest.BurnE2E
         {
             using (var root = this.TestContext.GetTestRegistryRoot())
             {
+                Assert.NotNull(root);
                 var actualValue = root.GetValue(name) as string;
                 Assert.Equal(expectedValue, actualValue);
             }
