@@ -55,7 +55,7 @@ namespace WixToolsetTest.BurnE2E
             packageAv1.VerifyTestRegistryRootDeleted();
         }
 
-        [Fact(Skip = "https://github.com/wixtoolset/issues/issues/6380")]
+        [Fact]
         public void CanPatchSwidTag()
         {
             var originalVersion = "1.0.0.0";
@@ -115,8 +115,8 @@ namespace WixToolsetTest.BurnE2E
 
         private static void VerifySwidTagVersion(string tagName, string expectedVersion)
         {
-            var regidFolder = Environment.ExpandEnvironmentVariables(@"%ProgramData%\regid.1995-08.com.example");
-            var tagPath = Path.Combine(regidFolder, "regid.1995-08.com.example " + tagName + ".swidtag");
+            var regidFolder = Environment.ExpandEnvironmentVariables(@"%ProgramData%\regid.1995-08.com.example\swidtag");
+            var tagPath = Path.Combine(regidFolder, tagName + ".swidtag");
             string version = null;
 
             if (File.Exists(tagPath))
@@ -125,10 +125,10 @@ namespace WixToolsetTest.BurnE2E
                 doc.Load(tagPath);
 
                 var ns = new XmlNamespaceManager(doc.NameTable);
-                ns.AddNamespace("s", "http://standards.iso.org/iso/19770/-2/2009/schema.xsd");
+                ns.AddNamespace("s", "http://standards.iso.org/iso/19770/-2/2015/schema.xsd");
 
-                var versionNode = doc.SelectSingleNode("/s:software_identification_tag/s:product_version/s:name", ns);
-                version = versionNode?.InnerText ?? String.Empty;
+                var softwareIdentityElement = doc.SelectSingleNode("/s:SoftwareIdentity", ns) as XmlElement;
+                version = softwareIdentityElement?.GetAttribute("version") ?? String.Empty;
             }
 
             Assert.Equal(expectedVersion, version);
